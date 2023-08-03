@@ -1,7 +1,13 @@
 package fiubike
 
 class LoginController{
-    def login(){
+    def index(){
         
+    }
+
+    def redirect() {
+        session.username = params.username
+
+        redirect uri: '/'
     }
 }

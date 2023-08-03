@@ -58,7 +58,7 @@
     <div class="container">
         <div class="login-form">
             <h2>Login</h2>
-            <form action="${createLink(uri: '/')}" method="post">
+            <form action="${createLink(uri: '/login/redirect')}" method="post">
                 <div class="form-group">
                     <label for="username" class="form-label">Username:</label>
                     <input type="text" name="username" id="username" class="form-input" required>
