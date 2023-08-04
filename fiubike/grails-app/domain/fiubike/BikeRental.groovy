@@ -4,8 +4,8 @@ class BikeRental {
 
     int id;
     String creationTimestamp;
-    String rentStartTimestamp;
-    String rentEndTimestamp;
+    int rentStartTimestamp;
+    int rentEndTimestamp;
     float totalCost; 
     int bikeId;
     int renterId;

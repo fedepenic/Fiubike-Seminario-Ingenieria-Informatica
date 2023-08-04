@@ -14,15 +14,23 @@ class BikeRentalController {
     def index(Integer max, Integer startDay, Integer endDay) {
         params.max = Math.min(max ?: 10, 100)
 
-        def filteredBikes = bikeService.list(params)
+        def overlappingRentals = bikeRentalService.list(params).findAll { bikeRental ->
+            bikeRental.rentStartTimestamp > startDay && bikeRental.rentEndTimestamp < endDay
+        }
+        
+        def overlappingRentalIds = overlappingRentals.collect { it.bikeId }
+        
+        def unavailableBikes = bikeService.list(params).findAll { bike -> 
+            overlappingRentalIds.contains(bike.id)
+        }
+
+        def availableBikes = bikeService.list(params)
         if(endDay!=1){
-            filteredBikes = bikeService.list(params).findAll { bike ->
-            bike.ownerId > startDay && bike.ownerId < endDay
+            availableBikes = availableBikes - unavailableBikes
         }
-        }
-        respond filteredBikes, model: [
-            bikeRentalCount: filteredBikes.size(),
-            bikeList: filteredBikes,
+        respond availableBikes, model: [
+            bikeRentalCount: availableBikes.size(),
+            bikeList: availableBikes,
         ]
     }
 
