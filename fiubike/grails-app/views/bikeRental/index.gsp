@@ -39,6 +39,8 @@
         </div>
         <input type="submit" value="Apply Filter" />
     </form>
-    <f:table collection="${bikeList}" />
+    <g:each var="bike" in="${bikeList}">
+        <g:render template="/bikeCard" model="[title: 'Bike Details', image: 'bike1.jpg', kilometers: bike.kilometers, bikeType: bike.type]"/>
+    </g:each>
 </body>
 </html>
