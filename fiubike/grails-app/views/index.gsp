@@ -49,6 +49,8 @@
 
             <div id="controllers" role="navigation">
                 <h2>Available Controllers:</h2>
+                <g:render template="/bikeCard" model="[title: 'Bike Details', image: 'bike1.jpg', kilometers: 1000, bikeType: 'Mountain Bike']"/>
+                <g:render template="/bikeCard" model="[title: 'Bike Details', image: 'bike2.jpg', kilometers: 2000, bikeType: 'Beach']"/>
                 <h2>${session.username}</h2>
                 <ul>
                     <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
