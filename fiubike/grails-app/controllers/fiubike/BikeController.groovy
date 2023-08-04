@@ -11,7 +11,13 @@ class BikeController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond bikeService.list(params), model:[bikeCount: bikeService.count()]
+        def bikes = bikeService.list(params)
+
+        def filteredBikes = bikes.findAll { bike ->
+            bike.ownerId > 2
+        }
+
+        respond filteredBikes, model: [bikeList: filteredBikes, bikeCount: filteredBikes.size()]
     }
 
     def show(Long id) {
