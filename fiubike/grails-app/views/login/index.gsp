@@ -70,6 +70,7 @@
                 <div class="form-group">
                     <button type="submit" class="form-submit">Login</button>
                 </div>
+                <f:table collection="${bikeList}" />
             </form>
         </div>
     </div>
