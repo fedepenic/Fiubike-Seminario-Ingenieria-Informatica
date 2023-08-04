@@ -34,5 +34,6 @@
         <label for="endYear">Year:</label>
         <g:select name="endYear" from="${(2023..2030)}" />
     </div>
+    <f:table collection="${bikeList}" />
 </body>
 </html>

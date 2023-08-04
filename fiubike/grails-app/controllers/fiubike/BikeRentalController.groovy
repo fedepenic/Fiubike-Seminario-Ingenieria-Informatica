@@ -7,11 +7,13 @@ class BikeRentalController {
 
     BikeRentalService bikeRentalService
 
+    BikeService bikeService
+
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond bikeRentalService.list(params), model:[bikeRentalCount: bikeRentalService.count()]
+        respond bikeService.list(params), model:[bikeRentalCount: bikeService.count(), bikeList: bikeService.list(params)]
     }
 
     def show(Long id) {
