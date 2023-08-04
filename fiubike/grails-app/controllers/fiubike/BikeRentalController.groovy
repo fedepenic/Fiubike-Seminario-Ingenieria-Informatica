@@ -11,10 +11,14 @@ class BikeRentalController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max, Integer startDay) {
+    def index(Integer max, Integer startDay, Integer endDay) {
         params.max = Math.min(max ?: 10, 100)
-        def filteredBikes = bikeService.list(params).findAll { bike ->
-            bike.ownerId > startDay
+
+        def filteredBikes = bikeService.list(params)
+        if(endDay!=1){
+            filteredBikes = bikeService.list(params).findAll { bike ->
+            bike.ownerId > startDay && bike.ownerId < endDay
+        }
         }
         respond filteredBikes, model: [
             bikeRentalCount: filteredBikes.size(),
