@@ -1,38 +1,38 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'bikeRental.label', default: 'BikeRental')}" />
-        <title><g:message code="default.list.label" args="[entityName]" /></title>
-    </head>
-    <body>
-    <div id="content" role="main">
-        <div class="container">
-            <section class="row">
-                <a href="#list-bikeRental" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-                <div class="nav" role="navigation">
-                    <ul>
-                        <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                        <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-                    </ul>
-                </div>
-            </section>
-            <section class="row">
-                <div id="list-bikeRental" class="col-12 content scaffold-list" role="main">
-                    <h1><g:message code="default.list.label" args="[entityName]" /></h1>
-                    <g:if test="${flash.message}">
-                        <div class="message" role="status">${flash.message}</div>
-                    </g:if>
-                    <f:table collection="${bikeRentalList}" />
-
-                    <g:if test="${bikeRentalCount > params.int('max')}">
-                    <div class="pagination">
-                        <g:paginate total="${bikeRentalCount ?: 0}" />
-                    </div>
-                    </g:if>
-                </div>
-            </section>
-        </div>
+<head>
+    <title>Bike Rental</title>
+</head>
+<body>
+    <h1>Bike Rental</h1>
+    <p>Please select the time and date you want to start your rental.</p>
+    <label>Start of Rental:</label>
+    <div>
+        <label for="startHour">Hour:</label>
+        <g:select name="startHour" from="${(0..23)}" />
+        <label for="startMinute">Minute:</label>
+        <g:select name="startMinute" from="${(0..59)}" />
+        <label for="startDay">Day:</label>
+        <g:select name="startDay" from="${(1..31)}" />
+        <label for="startMonth">Month:</label>
+        <g:select name="startMonth" from="${['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']}" />
+        <label for="startYear">Year:</label>
+        <g:select name="startYear" from="${(2023..2030)}" />
     </div>
-    </body>
+    <br/>
+    <p>Please select the time and date you want to end your rental.</p>
+    <label>End of Rental:</label>
+    <div>
+        <label for="endHour">Hour:</label>
+        <g:select name="endHour" from="${(0..23)}" />
+        <label for="endMinute">Minute:</label>
+        <g:select name="endMinute" from="${(0..59)}" />
+        <label for="endDay">Day:</label>
+        <g:select name="endDay" from="${(1..31)}" />
+        <label for="endMonth">Month:</label>
+        <g:select name="endMonth" from="${['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']}" />
+        <label for="endYear">Year:</label>
+        <g:select name="endYear" from="${(2023..2030)}" />
+    </div>
+</body>
 </html>
