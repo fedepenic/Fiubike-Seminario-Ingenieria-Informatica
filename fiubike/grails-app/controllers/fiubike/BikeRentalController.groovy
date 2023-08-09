@@ -38,8 +38,14 @@ class BikeRentalController {
         respond bikeRentalService.get(id)
     }
 
-    def create() {
-        respond new BikeRental(params)
+    def create(Long bikeId, Integer startDay, Integer endDay) {
+        def bikeRental = new BikeRental(
+            bikeId: bikeId,
+            rentStartTimestamp: startDay,
+            rentEndTimestamp: endDay
+        )
+
+        respond bikeRental
     }
 
     def save(BikeRental bikeRental) {
