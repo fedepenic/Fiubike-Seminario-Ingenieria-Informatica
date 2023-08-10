@@ -9,15 +9,20 @@ class BikeController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    // def index(Integer max) {
+    //     params.max = Math.min(max ?: 10, 100)
+    //     def bikes = bikeService.list(params)
+
+    //     def filteredBikes = bikes.findAll { bike ->
+    //         bike.ownerId > 2
+    //     }
+
+    //     respond filteredBikes, model: [bikeList: filteredBikes, bikeCount: filteredBikes.size()]
+    // }
+
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        def bikes = bikeService.list(params)
-
-        def filteredBikes = bikes.findAll { bike ->
-            bike.ownerId > 2
-        }
-
-        respond filteredBikes, model: [bikeList: filteredBikes, bikeCount: filteredBikes.size()]
+        respond bikeService.list(params), model:[bikeCount: bikeService.count()]
     }
 
     def show(Long id) {

@@ -38,14 +38,27 @@ class BikeRentalController {
         respond bikeRentalService.get(id)
     }
 
-    def create(Long bikeId, Integer startDay, Integer endDay) {
-        def bikeRental = new BikeRental(
-            bikeId: bikeId,
-            rentStartTimestamp: startDay,
-            rentEndTimestamp: endDay
-        )
+    def saveBikeRentalWithParams(Long bikeId, Integer startDay, Integer endDay) {
 
-        respond bikeRental
+        def bikeRental = new BikeRental()
+
+        bikeRental.creationTimestamp = 123
+        bikeRental.rentStartTimestamp = startDay
+        bikeRental.rentEndTimestamp = endDay
+        bikeRental.totalCost = 0
+        bikeRental.bikeId = bikeId
+
+        User myUser = User.findByName(session.username)
+
+        bikeRental.renterId = myUser.id
+
+        bikeRentalService.save(bikeRental)
+
+        redirect uri: '/'
+    }
+
+    def create() {
+        respond new BikeRental(params)
     }
 
     def save(BikeRental bikeRental) {

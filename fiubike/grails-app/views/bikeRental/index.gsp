@@ -40,7 +40,7 @@
         <input type="submit" value="Apply Filter" />
     </form>
     <g:each var="bike" in="${bikeList}">
-        <a href="${createLink(controller: 'bikeRental', action: 'create', params: [bikeId: bike.id, startDay: params.startDay, endDay: params.endDay])}">
+        <a href="${createLink(controller: 'bikeRental', action: 'saveBikeRentalWithParams', params: [bikeId: bike.id, startDay: params.startDay, endDay: params.endDay])}">
             <g:render template="/bikeCard" model="[title: 'Bike Details', image: 'bike1.jpg', kilometers: bike.kilometers, bikeType: bike.type]"/>
         </a>
     </g:each>
