@@ -9,7 +9,6 @@ class BikeRental {
     float totalCost; 
     int bikeId;
     int renterId;
-    boolean rentalCompleted;
 
     static constraints = {
     }
