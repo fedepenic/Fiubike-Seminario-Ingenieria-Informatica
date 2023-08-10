@@ -56,6 +56,24 @@ class BikeRentalController {
 
         try {
             bikeRentalService.save(bikeRental)
+
+            Challenge challenge = Challenge.findByType("Number of rentals")
+            def bikeOwner = bikeService.get(bikeRental.bikeId).ownerId
+
+            if(challenge){
+                def bikeOwnerRentals = bikeRentalService.list(params).findAll { bikeRentalItem ->
+                    bikeService.get(bikeRental.bikeId).ownerId == bikeOwner
+                }
+
+                if(bikeOwnerRentals.size() >= challenge.target){
+                    def badgeId = Badge.findByName("Number of Rentals").id
+                    if(badgeId){
+                        //Here you should update the field badges, which is a list, from the user whose bike is being rented, i.e from the bikeOwner.
+                        System.out.println("The user with id" + bikeOwner + " has obtained the badge of number of rentals.")
+                    }
+                }
+            }
+
         } catch (ValidationException e) {
             respond bikeRental.errors, view:'create'
             return
