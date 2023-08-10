@@ -7,7 +7,7 @@
     <h1>My Rentals</h1>
     
     <div class="rentals">
-        <g:each in="${bikeRentals}" var="rental">
+        <g:each in="${myRentals}" var="rental">
             <div class="rental-card">
                 <h2>Rental ID: ${rental.id}</h2>
                 <p>Start: ${new Date(rental.rentStartTimestamp * 1000)}</p>
@@ -23,7 +23,7 @@
     <h1>Owned Rentals</h1>
     
     <div class="rentals">
-        <g:each in="${bikeRentals}" var="rental">
+        <g:each in="${ownedRentals}" var="rental">
             <div class="rental-card">
                 <h2>Rental ID: ${rental.id}</h2>
                 <p>Start: ${new Date(rental.rentStartTimestamp * 1000)}</p>
